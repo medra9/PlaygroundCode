@@ -1,0 +1,47 @@
+﻿@model IEnumerable<practicaEdenred.Models.UIFactura>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Consulta de facturas</title>
+</head>
+<body>
+    <h2>Consulta de facturas</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Fecha creacion</th>
+                <th>Codigo cliente</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.fecha_creacion)</td>
+                    <td>@Html.DisplayFor(modelItem => item.cod_cliente)</td>
+                    <td>@Html.DisplayFor(modelItem => item.total)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+@if (ViewBag.Page > 1)
+{
+    <a href="@Url.Action("Index", new { page = ViewBag.Page - 1 })"
+       class="btn btn-default">
+        &laquo; Prev
+    </a>
+}
+    <a href="@Url.Action("Index", new { page = ViewBag.Page + 1 })"
+       class="btn btn-default">
+        Next &raquo;
+    </a>
+
+</body>
+</html>
