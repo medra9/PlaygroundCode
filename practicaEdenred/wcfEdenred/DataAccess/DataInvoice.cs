@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data;
-using System.Linq;
-using System.Web;
 using wcfEdenred.BusinessEntities;
 
 namespace wcfEdenred.DataAccess
