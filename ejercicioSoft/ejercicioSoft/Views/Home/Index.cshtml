@@ -28,12 +28,38 @@
                 @Html.DisplayFor(modelItem => item.descripcion)
             </td>
             <td>
-                @Html.ActionLink("Update", "Update", new { id = item.id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                @Html.ActionLink("Update", "Update", "Home", new { id = item.id }, new { @class = "modal-link btn btn-success" })
+                @Html.ActionLink("Delete", "Delete", "Home", new { id = item.id }, new { @class = "btn btn-success" })
             </td>
         </tr>
     }
 </table>
 <p>
-    @Html.ActionLink("Agregar", "Create", "Home")
+    @Html.ActionLink("Agregar ", "Create", "Home", null, new { @class = "modal-link btn btn-success" })
 </p>
+<div id="modal-container" class="modal fade"
+     tabindex="-1" role="dialog">
+    <div class="modal-content">
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        $(function () {
+            $('body').on('click', '.modal-link', function (e) {
+                e.preventDefault();
+                $(this).attr('data-target', '#modal-container');
+                $(this).attr('data-toggle', 'modal');
+            });
+            $('body').on('click', '.modal-close-btn', function () {
+                $('#modal-container').modal('hide');
+            });
+            $('#modal-container').on('hidden.bs.modal', function () {
+                $(this).removeData('bs.modal');
+            });
+            $('#CancelModal').on('click', function () {
+                return false;
+            });
+        });
+    </script>
+}

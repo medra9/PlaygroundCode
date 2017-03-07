@@ -23,15 +23,16 @@ namespace ejercicioSoft.Controllers
 
         public ActionResult Create()
         {
-            return View();
+            return PartialView("_Create");
         }
 
         [HttpPost]
         public ActionResult Create(ElementoModel elemento)
         {
-            elemento.id = lista.LastOrDefault().id + 1;
+            var ultimo = lista.LastOrDefault();
+            elemento.id = (!object.Equals(null, ultimo)) ? ultimo.id + 1 : 1;
             lista.Add(elemento);
-            return View("Index",lista);
+            return View("Index", lista);
         }
 
         public ActionResult Delete(int id)
@@ -43,14 +44,17 @@ namespace ejercicioSoft.Controllers
         public ActionResult Update(int id)
         {
             var find = lista.SingleOrDefault(x => x.id == id);
-            return View(find);
+            return PartialView("_Update",find);
         }
 
         [HttpPost]
         public ActionResult Update(ElementoModel elemento)
         {
             var find = lista.SingleOrDefault(x => x.id == elemento.id);
-            find.descripcion = elemento.descripcion;
+            if (!object.Equals(null, find))
+            {
+                find.descripcion = elemento.descripcion;
+            }
             return View("Index",lista);
         }
     }
