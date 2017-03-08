@@ -42,8 +42,25 @@ namespace ejercicioSoft.Controllers
 
         public ActionResult Delete(int id)
         {
-            lista.Remove(lista.SingleOrDefault(x => x.id == id));
-            return View("Index",lista);
+            if (TempData.ContainsKey("delete_id"))
+            {
+                TempData["delete_id"] = id;
+            }
+            else
+            {
+                TempData.Add("delete_id", id);
+            }
+            return PartialView("_Delete");
+        }
+
+        [HttpPost]
+        public ActionResult Delete(bool delete)
+        {
+            if (delete && TempData.ContainsKey("delete_id"))
+            {
+                lista.Remove(lista.SingleOrDefault(x => x.id == Convert.ToInt32(TempData["delete_id"])));
+            }
+            return PartialView("_Elementos", lista);
         }
 
         public ActionResult Update(int id)
@@ -60,7 +77,7 @@ namespace ejercicioSoft.Controllers
             {
                 find.descripcion = elemento.descripcion;
             }
-            return View("Index",lista);
+            return PartialView("_Elementos", lista);
         }
     }
 }

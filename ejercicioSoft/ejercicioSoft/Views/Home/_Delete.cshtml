@@ -1,0 +1,22 @@
+﻿<div class="modal-body">
+    @using (Ajax.BeginForm("Delete", "Home", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "div_tabla" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <div class="form-group">
+                @Html.Label("¿Borrar elemento?")
+                <div class="col-md-10">
+                    @Html.Hidden("delete", true)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="button" value="Cancel" class="btn btn-default" onclick="close_modal();" />
+                    <input type="submit" value="Delete" class="btn btn-danger" onclick="close_modal();" />
+                </div>
+            </div>
+        </div>
+    }
+</div>

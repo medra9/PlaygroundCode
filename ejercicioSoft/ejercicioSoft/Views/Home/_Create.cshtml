@@ -1,6 +1,4 @@
 ﻿@model ejercicioSoft.Models.ElementoModel
-<script src="~/Scripts/jquery-1.10.2.js"></script>
-<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script> 
 <div class="modal-body">
     @using (Ajax.BeginForm("Create", "Home", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "div_tabla" }))
     {
@@ -20,18 +18,9 @@
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Agregar" class="btn btn-default" id="SaveElement" />
+                    <input type="submit" value="Agregar" class="btn btn-default" onclick="close_modal();" />
                 </div>
             </div>
         </div>
     }
 </div>
-@section scripts{
-    <script type="text/javascript">
-        $(function () {
-            $('#SaveElement').click(function () {
-                $('#modal-container').modal('hide');
-            });
-        });
-    </script>
-}

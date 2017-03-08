@@ -1,8 +1,6 @@
 ﻿@model ejercicioSoft.Models.ElementoModel
-
 <div class="modal-body">
-
-    @using (Html.BeginForm("Update", "Home", FormMethod.Post))
+    @using (Ajax.BeginForm("Update", "Home", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "div_tabla" }))
     {
         @Html.AntiForgeryToken()
 
@@ -11,7 +9,6 @@
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.id)
-
             <div class="form-group">
                 @Html.LabelFor(model => model.descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -22,18 +19,9 @@
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Save" class="btn btn-default" id="SaveChange" />
+                    <input type="submit" value="Editar" class="btn btn-default" onclick="close_modal()" />
                 </div>
             </div>
         </div>
     }
 </div>
-@section scripts{
-    <script type="text/javascript">
-        $(function () {
-            $('#SaveChange').click(function () {
-                $('#modal-container').modal('hide');
-            });
-        });
-    </script>
-}
