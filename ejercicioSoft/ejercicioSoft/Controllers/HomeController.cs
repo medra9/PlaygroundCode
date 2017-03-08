@@ -18,7 +18,12 @@ namespace ejercicioSoft.Controllers
 
         public ActionResult Index()
         {
-            return View(lista);
+            return View();
+        }
+
+        public ActionResult ElementosTodos()
+        {
+            return PartialView("_Elementos",lista);
         }
 
         public ActionResult Create()
@@ -32,7 +37,7 @@ namespace ejercicioSoft.Controllers
             var ultimo = lista.LastOrDefault();
             elemento.id = (!object.Equals(null, ultimo)) ? ultimo.id + 1 : 1;
             lista.Add(elemento);
-            return View("Index", lista);
+            return PartialView("_Elementos", lista);
         }
 
         public ActionResult Delete(int id)

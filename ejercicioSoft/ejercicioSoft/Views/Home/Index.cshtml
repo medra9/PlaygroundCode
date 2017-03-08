@@ -1,39 +1,11 @@
-﻿@model IEnumerable<ejercicioSoft.Models.ElementoModel>
-
-@{
+﻿@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Index</h2>
+<div id="div_tabla"></div>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.id)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.descripcion)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.descripcion)
-            </td>
-            <td>
-                @Html.ActionLink("Update", "Update", "Home", new { id = item.id }, new { @class = "modal-link btn btn-success" })
-                @Html.ActionLink("Delete", "Delete", "Home", new { id = item.id }, new { @class = "btn btn-success" })
-            </td>
-        </tr>
-    }
-</table>
 <p>
     @Html.ActionLink("Agregar ", "Create", "Home", null, new { @class = "modal-link btn btn-success" })
 </p>
@@ -45,6 +17,19 @@
 
 @section scripts{
     <script type="text/javascript">
+        function fill_table() {
+            $.ajax({
+                type: "POST",
+                url: "@Url.Content("~/Home/ElementosTodos")",
+            //    contentType: "application/json",
+            //data: JSON.stringify({ "page": page }),
+            }).success(function (response) {
+                $('#div_tabla').html(response).fadeOut().fadeIn();
+            }).fail(function (xhr, textStatus, errorThrown) {
+                alert(xhr);
+            });
+        }
+
         $(function () {
             $('body').on('click', '.modal-link', function (e) {
                 e.preventDefault();
@@ -60,6 +45,8 @@
             $('#CancelModal').on('click', function () {
                 return false;
             });
+            fill_table();
+            $('#modal-container').modal('hide');
         });
     </script>
 }
