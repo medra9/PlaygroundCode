@@ -16,6 +16,7 @@ namespace ejercicioSoft.Controllers
             new ElementoModel() { id = 3, descripcion = "Sergio" }
         };
 
+        [Authorize]
         public ActionResult Index()
         {
             return View();
@@ -34,12 +35,16 @@ namespace ejercicioSoft.Controllers
         [HttpPost]
         public ActionResult Create(ElementoModel elemento)
         {
-            var ultimo = lista.LastOrDefault();
-            elemento.id = (!object.Equals(null, ultimo)) ? ultimo.id + 1 : 1;
-            lista.Add(elemento);
+            if (ModelState.IsValid)
+            {
+                var ultimo = lista.LastOrDefault();
+                elemento.id = (!object.Equals(null, ultimo)) ? ultimo.id + 1 : 1;
+                lista.Add(elemento);
+            }
             return PartialView("_Elementos", lista);
         }
 
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             if (TempData.ContainsKey("delete_id"))
@@ -72,10 +77,13 @@ namespace ejercicioSoft.Controllers
         [HttpPost]
         public ActionResult Update(ElementoModel elemento)
         {
-            var find = lista.SingleOrDefault(x => x.id == elemento.id);
-            if (!object.Equals(null, find))
+            if (ModelState.IsValid)
             {
-                find.descripcion = elemento.descripcion;
+                var find = lista.SingleOrDefault(x => x.id == elemento.id);
+                if (!object.Equals(null, find))
+                {
+                    find.descripcion = elemento.descripcion;
+                }
             }
             return PartialView("_Elementos", lista);
         }

@@ -1,0 +1,30 @@
+﻿@model autenticacion.Models.ElementoViewModel
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.lista.Single().id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lista.Single().descripcion)
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model.lista)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.descripcion)
+            </td>
+            <td>
+                @if (Model.privilege.CanEdit)
+                {
+                    @Html.ActionLink("Update", "Update", "Home", new { id = item.id }, new { @class = "modal-link btn btn-success" }) 
+                    @Html.ActionLink("Delete", "Delete", "Home", new { id = item.id }, new { @class = "modal-link btn btn-success" })
+                }
+            </td>
+        </tr>
+    }
+</table>

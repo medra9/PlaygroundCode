@@ -1,0 +1,60 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+<div id="div_tabla"></div>
+
+<p>
+    @Html.ActionLink("Agregar", "Create", "Home", null, new { @class = "modal-link btn btn-success" })
+</p>
+<div id="modal-container" class="modal fade"
+     tabindex="-1" role="dialog">
+    <div class="modal-content">
+    </div>
+</div>
+@section scripts{
+    <script type="text/javascript">
+        function fill_table() {
+            $.ajax({
+                type: "POST",
+                url: "@Url.Content("~/Home/ElementosTodos")",
+                //    contentType: "application/json",
+                //data: JSON.stringify({ "page": page }),
+                success: function (response) {
+                    $('#div_tabla').html(response).fadeOut().fadeIn();
+                },
+                fail: function (xhr, textStatus, errorThrown) {
+                    alert(xhr);
+                }
+            });
+        }
+
+        function close_modal() {
+            $('#modal-container').hide().modal('hide');
+        }
+
+        function parse() {
+            $.validator.unobtrusive.parse($("#div_tabla"));
+        }
+
+        $(function () {
+            $('body').on('click', '.modal-link', function (e) {
+                e.preventDefault();
+                $(this).attr('data-target', '#modal-container');
+                $(this).attr('data-toggle', 'modal');
+            });
+            $('body').on('click', '.modal-close-btn', function () {
+                $('#modal-container').modal('hide');
+            });
+            $('#modal-container').on('hidden.bs.modal', function () {
+                $(this).removeData('bs.modal');
+            });
+            $('#CancelModal').on('click', function () {
+                return false;
+            });
+            fill_table();
+        });
+    </script>
+}

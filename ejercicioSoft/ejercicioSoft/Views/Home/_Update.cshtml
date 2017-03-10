@@ -1,6 +1,6 @@
 ﻿@model ejercicioSoft.Models.ElementoModel
 <div class="modal-body">
-    @using (Ajax.BeginForm("Update", "Home", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "div_tabla" }))
+    @using (Ajax.BeginForm("Update", "Home", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "div_tabla", OnComplete = "close_modal" }))
     {
         @Html.AntiForgeryToken()
 
@@ -19,7 +19,7 @@
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Editar" class="btn btn-default" onclick="close_modal()" />
+                    <input type="submit" value="Editar" class="btn btn-default"/>
                 </div>
             </div>
         </div>
