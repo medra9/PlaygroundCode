@@ -1,0 +1,45 @@
+2017-03-10 18:07:02,084 [9] INFO  <>f__AnonymousType0`3 [(null)] - OnActionExecuting- controller:Home action:Index
+2017-03-10 18:07:02,126 [9] INFO  <>f__AnonymousType0`3 [(null)] - OnActionExecuted- controller:Home action:Index
+2017-03-10 18:07:02,129 [9] INFO  <>f__AnonymousType0`3 [(null)] - OnResultExecuting - controller:Home action:Index
+2017-03-10 18:07:04,004 [9] INFO  <>f__AnonymousType0`3 [(null)] - OnResultExecuted- controller:Home action:Index
+2017-03-10 18:07:04,255 [10] INFO  <>f__AnonymousType0`3 [(null)] - OnActionExecuting- controller:Home action:ElementosTodos
+2017-03-10 18:07:04,258 [10] INFO  <>f__AnonymousType0`3 [(null)] - OnActionExecuted- controller:Home action:ElementosTodos
+2017-03-10 18:07:04,260 [10] INFO  <>f__AnonymousType0`3 [(null)] - OnResultExecuting - controller:Home action:ElementosTodos
+2017-03-10 18:07:04,344 [10] INFO  <>f__AnonymousType0`3 [(null)] - OnResultExecuted- controller:Home action:ElementosTodos
+2017-03-10 18:58:04,738 [9] INFO  <>f__AnonymousType0`3 [(null)] - OnActionExecuting- controller:Home action:Index
+2017-03-10 18:58:14,647 [9] INFO  <>f__AnonymousType0`3 [(null)] - OnActionExecuted- controller:Home action:Index
+2017-03-10 18:58:14,661 [9] INFO  <>f__AnonymousType0`3 [(null)] -    en autenticacion.Controllers.HomeController.Index() en C:\REPOS\autenticacion\autenticacion\Controllers\HomeController.cs:línea 27
+   en lambda_method(Closure , ControllerBase , Object[] )
+   en System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   en System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   en System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass33.<BeginInvokeActionMethodWithFilters>b__32(IAsyncResult asyncResult)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult) | Se produjo una excepción de tipo 'System.Exception'.
+2017-03-10 19:13:00,311 [10] INFO  <>f__AnonymousType0`3 [(null)] -    en autenticacion.Controllers.HomeController.Index() en C:\REPOS\autenticacion\autenticacion\Controllers\HomeController.cs:línea 27
+   en lambda_method(Closure , ControllerBase , Object[] )
+   en System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   en System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   en System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass33.<BeginInvokeActionMethodWithFilters>b__32(IAsyncResult asyncResult)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult) | Se produjo una excepción de tipo 'System.Exception'.

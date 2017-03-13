@@ -8,6 +8,7 @@ using System.Security.Claims;
 
 namespace autenticacion.Controllers
 {
+    [Log, ErrorHandler]
     public class HomeController : Controller
     {
         public static List<ElementoModel> lista = new List<ElementoModel>() {
@@ -23,6 +24,7 @@ namespace autenticacion.Controllers
         {
             var claims = ((ClaimsIdentity)HttpContext.User.Identity).Claims;
             privilege = new PrivilegeViewModel(claims);
+            throw new Exception();
             return View();
         }
 

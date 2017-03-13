@@ -10,8 +10,8 @@ namespace autenticacion.BE
     {
         public static List<UserModel> users = new List<UserModel>()
         {
-            new UserModel() { username = "jorge@jorge.com", password="123", role="Admin" },
-            new UserModel() { username = "areli@areli.com", password="123", role="User" }
+            new UserModel() { username = "jorge@jorge.com", password="123", role="Admin", image_path="/Content/Images/jorge.jpg" },
+            new UserModel() { username = "areli@areli.com", password="123", role="User", image_path="/Content/Images/areli.jpg" }
         };
         public UserModel isValid(UserModel um)
         {

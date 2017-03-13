@@ -13,7 +13,7 @@ namespace autenticacion.Models
         {
             if (!object.ReferenceEquals(null, claims))
             {
-                var find = claims.SingleOrDefault(x => x.Value == "Admin");
+                var find = claims.SingleOrDefault(x => x.Type == ClaimTypes.Role);
                 var edit = false;
                 if (!object.ReferenceEquals(null, find))
                 {
