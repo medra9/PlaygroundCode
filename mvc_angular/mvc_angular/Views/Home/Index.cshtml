@@ -1,0 +1,125 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<div ng-app="myApp" ng-controller="HomeCtrl" class="container">
+    <div class="row">
+        <div class="bs-example marginTop50" data-example-id="table-within-panel">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3>Code Handbook</h3>
+                </div>
+                <div class="panel-body">
+                    <p>
+                        AngularJS ASP.NET MVC Editable Grid Demo
+                    </p>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                #
+                            </th>
+                            <th>
+                                First Name
+                            </th>
+                            <th>
+                                Last Name
+                            </th>
+                            <th>
+                                Country
+                            </th>
+                            <th>
+                                
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="emp in employees" id="row_{{emp.ID}}">
+                            <th scope="row">
+                                <span ng-show="emp.showEdit">{{emp.ID}}</span>
+                                <input ng-show="!emp.showEdit" type="text" ng-model="emp.ID" class="form-control">
+                            </th>
+                            <td>
+                                <span ng-show="emp.showEdit">{{emp.FirstName}}</span>
+                                <input ng-show="!emp.showEdit" type="text" ng-model="emp.FirstName" class="form-control">
+                            </td>
+                            <td>
+                                <span ng-show="emp.showEdit">{{emp.LastName}}</span>
+                                <input ng-show="!emp.showEdit" type="text" ng-model="emp.LastName" class="form-control">
+                            </td>
+                            <td>
+                                <span ng-show="emp.showEdit">{{emp.Country}}</span>
+                                <input ng-show="!emp.showEdit" type="text" ng-model="emp.Country" class="form-control">
+                            </td>
+                            <td>
+                                <span ng-show="emp.showEdit" ng-click="toggleEdit(emp)" class="glyphicon glyphicon-pencil"></span>
+                                <span ng-show="!emp.showEdit" ng-click="toggleEdit(emp)" class="glyphicon glyphicon-ok"></span>
+                                <span ng-show="emp.showEdit" ng-click="delete(emp)" class="glyphicon glyphicon-remove"></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(function () {
+            var app = angular.module('myApp', []);
+            app.controller('HomeCtrl', ['$scope', '$http', function ($scope, $http) {
+                $http({
+                    method: 'POST',
+                    url: '/Home/GetEmployees'
+                })
+                .then(function (response) {
+                    debugger;
+                    $scope.employees = response.data.employees;
+                    angular.forEach($scope.employees, function (obj) {
+                        obj["showEdit"] = true;
+                    });
+                    $scope.toggleEdit = function (emp) {
+                        emp.showEdit = emp.showEdit ? false : true;
+                        if (emp.showEdit) {
+                            var employee = {
+                                ID: emp.ID,
+                                FirstName: emp.FirstName,
+                                LastName: emp.LastName,
+                                Country: emp.Country
+                            };
+                            $http({
+                                method: 'POST',
+                                url: '/Home/Save',
+                                data: JSON.stringify(employee),
+                            })
+                            .then(function (response) {
+                                alert(response.data);
+                            });
+                        }
+                    };
+                    $scope.delete = function (emp) {
+                        $http({
+                            method: 'POST',
+                            url: '/Home/Delete',
+                            data: JSON.stringify(emp),
+                        })
+                        .then(function (response) {
+                            $scope.employees.splice(emp.ID, 1);
+                            $scope.refresh();
+                            alert(response.data);
+                        });                        
+                    };
+                }, function (error) {
+                    console.log(error);
+                });
+            }]);
+        });
+    </script>
+}
