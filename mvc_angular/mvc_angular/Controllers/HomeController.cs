@@ -27,17 +27,25 @@ namespace mvc_angular.Controllers
         public string Save(EmployeeModel emp)
         {
             var result = string.Empty;
-            var find = empList.Where(e => e.ID == emp.ID).SingleOrDefault();
-            if (!object.Equals(null, find))
+            if (ModelState.IsValid)
             {
-                find.FirstName = emp.FirstName;
-                find.LastName = emp.LastName;
-                find.Country = emp.Country;
-                result = "Modificación realizada";
+                var find = empList.Where(e => e.ID == emp.ID).SingleOrDefault();
+                if (!object.Equals(null, find))
+                {
+                    find.FirstName = emp.FirstName;
+                    find.LastName = emp.LastName;
+                    find.Country = emp.Country;
+                    result = "Modificación realizada";
+                }
+                else
+                {
+                    empList.Add(emp);
+                    result = "Se agrego el registro";
+                }
             }
             else
             {
-                result = "No se encontro el registro";
+                ModelState.AddModelError("Error", "Faltan campos");
             }
             return result;
         }
